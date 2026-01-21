@@ -16,7 +16,7 @@ jobs:
         sudo apt update
         sudo apt install -y python3-pip git zip unzip openjdk-17-jdk
 
-    - name: Install Python dependencies
+    - name: Install Python tools
       run: |
         pip install --upgrade pip
         pip install cython
@@ -25,6 +25,7 @@ jobs:
     - name: Build APK
       run: |
         buildozer init
+        yes | buildozer android update
         buildozer -v android debug
 
     - name: Upload APK
@@ -32,3 +33,4 @@ jobs:
       with:
         name: apk
         path: bin/*.apk
+
