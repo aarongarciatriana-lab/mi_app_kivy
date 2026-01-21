@@ -14,12 +14,22 @@ jobs:
     - name: Install system dependencies
       run: |
         sudo apt update
-        sudo apt install -y python3-pip git zip unzip openjdk-17-jdk
+        sudo apt install -y \
+          python3-pip \
+          git \
+          zip \
+          unzip \
+          openjdk-17-jdk \
+          autoconf \
+          automake \
+          libtool \
+          pkg-config
 
     - name: Install Python tools
       run: |
         pip install --upgrade pip
         pip install cython
+        pip install -r requirements.txt
         pip install buildozer
 
     - name: Build APK
@@ -33,4 +43,5 @@ jobs:
       with:
         name: apk
         path: bin/*.apk
+
 
